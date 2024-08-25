@@ -16,10 +16,12 @@ struct ContentView: View {
         NavigationStack {
             VStack {
                 ScrollViewReader { proxy in
-                    List {
-                        ForEach(items) { item in
-                            Text("Item \(item.order)")
-                                .id(item.order)
+                    ScrollView {
+                        LazyVStack {
+                            ForEach(items) { item in
+                                Text("Item \(item.order)")
+                                    .id(item.order)
+                            }
                         }
                     }
                     .onChange(of: items.count) {
