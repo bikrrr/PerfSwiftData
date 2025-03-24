@@ -26,14 +26,17 @@ struct ContentView: View {
                         scrollToBottom(proxy: proxy)
                     }
                 }
-                Button(action: addItems) {
-                    Text("Add 100 Items")
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
+                HStack {
+                    Button(action: addItems) {
+                        Text("Add 100 Items")
+                    }
+                    .buttonStyle(.borderedProminent)                     .buttonBorderShape(.roundedRectangle)
+
+                    Button(role: .destructive, action: deleteAllItems) {
+                        Text("Delete All")
+                    }
+                    .buttonStyle(.bordered)                     .buttonBorderShape(.roundedRectangle)
                 }
-                .padding()
             }
             .navigationTitle("SwiftData")
         }
@@ -52,6 +55,17 @@ struct ContentView: View {
             } catch {
                 print("Error saving context: \(error)")
             }
+        }
+    }
+    
+    private func deleteAllItems() {
+        for item in items {
+            modelContext.delete(item)
+        }
+        do {
+            try modelContext.save()
+        } catch {
+            print("Error saving context: \(error)")
         }
     }
 
