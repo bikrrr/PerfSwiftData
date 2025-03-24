@@ -27,7 +27,7 @@ struct ContentView: View {
                     }
                 }
                 Button(action: addItems) {
-                    Text("Add 50 Items")
+                    Text("Add 100 Items")
                         .padding()
                         .background(Color.blue)
                         .foregroundColor(.white)
@@ -43,7 +43,7 @@ struct ContentView: View {
         withAnimation {
             let maxOrder = items.last?.order ?? 0
 
-            for i in 1...50 {
+            for i in 1...100 {
                 let newItem = Item(order: maxOrder + i)
                 modelContext.insert(newItem)
             }
